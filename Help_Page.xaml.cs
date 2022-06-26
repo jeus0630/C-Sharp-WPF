@@ -14,9 +14,6 @@ using System.Windows.Shapes;
 
 namespace Midterm_Assignment_Jewoo_Ham
 {
-    /// <summary>
-    /// Help_Page.xaml에 대한 상호 작용 논리
-    /// </summary>
     public partial class Help_Page : Window
     {
         public Help_Page()

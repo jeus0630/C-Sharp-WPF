@@ -14,23 +14,20 @@ using System.Windows.Shapes;
 
 namespace Midterm_Assignment_Jewoo_Ham
 {
-    /// <summary>
-    /// Personality_Page.xaml에 대한 상호 작용 논리
-    /// </summary>
     public partial class Personality_Page : Window
     {
-        const int width_id = 50;
-        const int width_personID = 150;
-        const int width_shoeSize = 100;
-        const int width_favouriteMovie = 250;
-        const int width_favouriteActor = 40;
+        const int width_id = 80;
+        const int width_personID = 100;
+        const int width_shoeSize = 80;
+        const int width_favouriteMovie = 125;
+        const int width_favouriteActor = 130;
         public int argc = 5;
         MainWindow mWindow = ((MainWindow)System.Windows.Application.Current.MainWindow);
 
         public Personality_Page(ref List<Person> li_Person, ref List< Personality> li_Personality)
         {
             InitializeComponent();
-            lbl_header.Content = $"{"ID",width_id} {"Person ID",width_personID} {"Shoe Size",width_shoeSize} {"Favourite Movie",width_favouriteMovie} {"Favourite Actor",width_favouriteActor}";
+            lbl_header.Content = $"{"ID"} {"Person ID",20} {"Shoe Size",20} {"Favourite Movie",20} {"Favourite Actor",20}";
             Update();
         }
 
@@ -85,7 +82,7 @@ namespace Midterm_Assignment_Jewoo_Ham
         {
             if (lb_personality.SelectedItem == null)
             {
-                MessageBoxResult mbresult = MessageBox.Show("Please Select ", "Error", MessageBoxButton.OK);
+                MessageBoxResult mbresult = MessageBox.Show("Please Select Item from the list where you want to insert", "Error", MessageBoxButton.OK);
             }
             else
             {
@@ -99,17 +96,14 @@ namespace Midterm_Assignment_Jewoo_Ham
         {
             if (lb_personality.SelectedItem == null)
             {
-                MessageBoxResult mbresult = MessageBox.Show("Please Select ", "Error", MessageBoxButton.OK);
+                MessageBoxResult mbresult = MessageBox.Show("Please Select Item from the list", "Error", MessageBoxButton.OK);
             }
             else
-            {
-                MessageBoxResult mbresult = MessageBox.Show("Do you want to update?", "Confirm", MessageBoxButton.YesNo);
-                if (MessageBoxResult.Yes == mbresult)
-                {
-                    int idx = lb_personality.SelectedIndex;
-                    Input_Window input_window = new Input_Window(this, "update", idx);
-                    input_window.Show();
-                }
+            {            
+                int idx = lb_personality.SelectedIndex;
+
+                Input_Window input_window = new Input_Window(this, "update", idx);
+                input_window.Show();   
             }
         }
 
@@ -117,7 +111,7 @@ namespace Midterm_Assignment_Jewoo_Ham
         {
             if (lb_personality.SelectedItem == null)
             {
-                MessageBoxResult mbresult = MessageBox.Show("Please Select ", "Error", MessageBoxButton.OK);
+                MessageBoxResult mbresult = MessageBox.Show("Please Select Item from the list", "Error", MessageBoxButton.OK);
             }
             else
             {

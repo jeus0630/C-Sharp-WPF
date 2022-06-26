@@ -14,9 +14,6 @@ using System.Windows.Shapes;
 
 namespace Midterm_Assignment_Jewoo_Ham
 {
-    /// <summary>
-    /// Input_Window.xaml에 대한 상호 작용 논리
-    /// </summary>
     public partial class Input_Window : Window
     {
         MainWindow mWindow = ((MainWindow)System.Windows.Application.Current.MainWindow);
@@ -55,7 +52,7 @@ namespace Midterm_Assignment_Jewoo_Ham
             
             if (this.pg is Persons_Page)
             {
-                n_btn = ((Persons_Page)pg).argc; //6
+                n_btn = ((Persons_Page)pg).argc;
                 lbl[0].Content = "ID";
                 lbl[1].Content = "Name";
                 lbl[2].Content = "Address";
@@ -65,7 +62,7 @@ namespace Midterm_Assignment_Jewoo_Ham
             }
             else if (this.pg is Sports_Team_Page)
             {
-                n_btn = ((Sports_Team_Page)pg).argc; //4
+                n_btn = ((Sports_Team_Page)pg).argc;
                 lbl[0].Content = "ID";
                 lbl[1].Content = "PersonID";
                 lbl[2].Content = "Sports Team";
@@ -73,7 +70,7 @@ namespace Midterm_Assignment_Jewoo_Ham
             }
             else if (this.pg is Personality_Page)
             {
-                n_btn = ((Personality_Page)pg).argc; // 5
+                n_btn = ((Personality_Page)pg).argc;
                 lbl[0].Content = "ID";
                 lbl[1].Content = "PersonID";
                 lbl[2].Content = "Shoe Size";
@@ -82,7 +79,7 @@ namespace Midterm_Assignment_Jewoo_Ham
             }
             else if (this.pg is Education_Page)
             {
-                n_btn = ((Education_Page)pg).argc; // 5
+                n_btn = ((Education_Page)pg).argc;
                 lbl[0].Content = "ID";
                 lbl[1].Content = "PersonID";
                 lbl[2].Content = "Course Name";
@@ -111,23 +108,65 @@ namespace Midterm_Assignment_Jewoo_Ham
                     {
                         MessageBox.Show("Please Input correct format", "Error");
                     }
-                    Person temp = new Person(id, tb[1].Text, tb[2].Text, tb[3].Text, age, tb[5].Text);
-                    mWindow.li_Person.Insert(this.idx, temp);
-                    ((Persons_Page)this.pg).Update();
+                    else
+                    {
+                        var ids = from person in mWindow.li_Person
+                                    where person.ID == id
+                                        select person;
+                        
+                        if (ids.Count() > 0)
+                        {
+                            MessageBox.Show("There is already same ID", "Fail");
+                        }
+                        else
+                        {
+                            Person temp = new Person(id, tb[1].Text, tb[2].Text, tb[3].Text, age, tb[5].Text);
+                            mWindow.li_Person.Insert(this.idx, temp);
+                            ((Persons_Page)this.pg).Update();
+                            MessageBox.Show("Insert success", "Success");
+                            this.Close();
+                        }
+                    }
                 }
                 else if (this.pg is Sports_Team_Page)
                 {
                     int id, personID;
                     bool ret = int.TryParse(tb[0].Text, out id);
                     ret &= int.TryParse(tb[1].Text, out personID);
+
                     if (!ret)
                     {
                         MessageBox.Show("Please Input correct format", "Error");
+                    }
+
+                    bool is_ID_True = false;
+                    foreach (var person in mWindow.li_Person)
+                    {
+                        if (person.ID == personID) is_ID_True = true;
+                    }
+
+                    if (!is_ID_True)
+                    {
+                        MessageBox.Show("There is not matched person ID", "Error");
+                    }
+
+                    var ids = from person in mWindow.li_Person
+                              where person.ID == id
+                              select person;
+
+                    if (ids.Count() > 0)
+                    {
+                        MessageBox.Show("There is already same ID", "Fail");
+                    }
+
+                    if (ret && is_ID_True && ids.Count() == 0)
+                    {
+                        SportsTeam temp = new SportsTeam(id, personID, tb[2].Text, tb[3].Text);
+                        mWindow.li_SportsTeams.Insert(this.idx, temp);
+                        ((Sports_Team_Page)this.pg).Update();
+                        MessageBox.Show("Insert success", "Success");
                         this.Close();
                     }
-                    SportsTeam temp = new SportsTeam(id, personID, tb[2].Text, tb[3].Text);
-                    mWindow.li_SportsTeams.Insert(this.idx, temp);
-                    ((Sports_Team_Page)this.pg).Update();
                 }
                 else if (this.pg is Personality_Page)
                 {
@@ -138,11 +177,36 @@ namespace Midterm_Assignment_Jewoo_Ham
                     if (!ret)
                     {
                         MessageBox.Show("Please Input correct format", "Error");
+                    }
+
+                    bool is_ID_True = false;
+                    foreach (var person in mWindow.li_Person)
+                    {
+                        if (person.ID == personID) is_ID_True = true;
+                    }
+
+                    if (!is_ID_True)
+                    {
+                        MessageBox.Show("There is not matched person ID", "Error");
+                    }
+
+                    var ids = from person in mWindow.li_Person
+                              where person.ID == id
+                              select person;
+
+                    if (ids.Count() > 0)
+                    {
+                        MessageBox.Show("There is already same ID", "Fail");
+                    }
+
+                    if (ret && is_ID_True)
+                    {
+                        Personality temp = new Personality(id, personID, ssize, tb[3].Text, tb[4].Text);
+                        mWindow.li_Personalities.Insert(this.idx, temp);
+                        ((Personality_Page)this.pg).Update();
+                        MessageBox.Show("Insert success", "Success");
                         this.Close();
                     }
-                    Personality temp = new Personality(id, personID, ssize, tb[3].Text, tb[4].Text);
-                    mWindow.li_Personalities.Insert(this.idx, temp);
-                    ((Personality_Page)this.pg).Update();
                 }
                 else if (this.pg is Education_Page)
                 {
@@ -154,11 +218,37 @@ namespace Midterm_Assignment_Jewoo_Ham
                     if (!ret)
                     {
                         MessageBox.Show("Please Input correct format", "Error");
+                    }
+
+                    bool is_ID_True = false;
+                    foreach (var person in mWindow.li_Person)
+                    {
+                        if (person.ID == personID) is_ID_True = true;
+                    }
+
+                    if (!is_ID_True)
+                    {
+                        MessageBox.Show("There is not matched person ID", "Error");
+                    }
+
+                    var ids = from person in mWindow.li_Person
+                              where person.ID == id
+                              select person;
+
+                    if (ids.Count() > 0)
+                    {
+                        MessageBox.Show("There is already same ID", "Fail");
+                    }
+
+                    if (ret && is_ID_True)
+                    {
+
+                        Education temp = new Education(id, personID, tb[2].Text, grade, tb[4].Text);
+                        mWindow.li_Educations.Insert(this.idx, temp);
+                        ((Education_Page)pg).Update();
+                        MessageBox.Show("Insert success", "Success");
                         this.Close();
                     }
-                    Education temp = new Education(id, personID, tb[2].Text, grade, tb[4].Text);
-                    mWindow.li_Educations.Insert(this.idx, temp);
-                    ((Education_Page)pg).Update();
                 }
 
             }
@@ -166,64 +256,169 @@ namespace Midterm_Assignment_Jewoo_Ham
             {
                 if (this.pg is Persons_Page)
                 {
-                    int id, age;
-                    bool ret = int.TryParse(tb[0].Text, out id);
-                    ret &= int.TryParse(tb[4].Text, out age);
-                    if (!ret)
+                    MessageBoxResult mbResult = MessageBox.Show("Do you want to update?", "Confirm", MessageBoxButton.YesNo);
+                    if (MessageBoxResult.Yes == mbResult)
                     {
-                        MessageBoxResult mbresult = MessageBox.Show("Please Input correct format", "Error");
-                        this.Close();
+                        int id, age;
+                        bool ret = int.TryParse(tb[0].Text, out id);
+                        ret &= int.TryParse(tb[4].Text, out age);
+                        if (!ret)
+                        {
+                            MessageBoxResult mbresult = MessageBox.Show("Please Input correct format", "Error");
+                        }
+                        else
+                        {
+                            var ids = from person in mWindow.li_Person
+                                      where person.ID == id
+                                      select person;
+
+                            if (ids.Count() > 0)
+                            {
+                                MessageBox.Show("There is already same ID", "Fail");
+                            }else
+                            {
+                                Person temp = new Person(id, tb[1].Text, tb[2].Text, tb[3].Text, age, tb[5].Text);
+                                mWindow.li_Person[this.idx] = temp;
+                                ((Persons_Page)this.pg).Update();
+                                MessageBox.Show("Update success", "Success");
+                                this.Close();
+                            }
+                        }
+
                     }
-                    Person temp = new Person(id, tb[1].Text, tb[2].Text, tb[3].Text, age, tb[5].Text);
-                    mWindow.li_Person[this.idx] = temp;
-                    ((Persons_Page)this.pg).Update();
                 }
                 else if (this.pg is Sports_Team_Page)
                 {
-                    int id, personID;
-                    bool ret = int.TryParse(tb[0].Text, out id);
-                    ret &= int.TryParse(tb[1].Text, out personID);
-                    if (!ret)
+                    MessageBoxResult mbResult = MessageBox.Show("Do you want to update?", "Confirm", MessageBoxButton.YesNo);
+                    if (MessageBoxResult.Yes == mbResult)
                     {
-                        MessageBox.Show("Please Input correct format", "Error");
-                        this.Close();
+                        int id, personID;
+                        bool ret = int.TryParse(tb[0].Text, out id);
+                        ret &= int.TryParse(tb[1].Text, out personID);
+                        if (!ret)
+                        {
+                            MessageBox.Show("Please Input correct format", "Error");
+                        }
+
+                        bool is_ID_True = false;
+                        foreach (var person in mWindow.li_Person)
+                        {
+                            if (person.ID == personID) is_ID_True = true;
+                        }
+
+                        if (!is_ID_True)
+                        {
+                            MessageBox.Show("There is not matched person ID", "Error");
+                        }
+
+                        var ids = from person in mWindow.li_Person
+                                  where person.ID == id
+                                  select person;
+
+                        if (ids.Count() > 0)
+                        {
+                            MessageBox.Show("There is already same ID", "Fail");
+                        }
+
+                        if (ret && is_ID_True && ids.Count() == 0)
+                        {
+                            SportsTeam temp = new SportsTeam(id, personID, tb[2].Text, tb[3].Text);
+                            mWindow.li_SportsTeams[this.idx] = temp;
+                            ((Sports_Team_Page)this.pg).Update();
+                            MessageBox.Show("Update success", "Success");
+                            this.Close();
+                        }
                     }
-                    SportsTeam temp = new SportsTeam(id, personID, tb[2].Text, tb[3].Text);
-                    mWindow.li_SportsTeams[this.idx] = temp;
-                    ((Sports_Team_Page)this.pg).Update();
                 }
                 else if (this.pg is Personality_Page)
                 {
-                    int id, personID, ssize;
-                    bool ret = int.TryParse(tb[0].Text, out id);
-                    ret &= int.TryParse(tb[1].Text, out personID);
-                    ret &= int.TryParse(tb[2].Text, out ssize);
-                    if (!ret)
+                    MessageBoxResult mbResult = MessageBox.Show("Do you want to update?", "Confirm", MessageBoxButton.YesNo);
+                    if (MessageBoxResult.Yes == mbResult)
                     {
-                        MessageBoxResult mbresult = MessageBox.Show("Please Input correct format", "Error");
-                        this.Close();
+                        int id, personID, ssize;
+                        bool ret = int.TryParse(tb[0].Text, out id);
+                        ret &= int.TryParse(tb[1].Text, out personID);
+                        ret &= int.TryParse(tb[2].Text, out ssize);
+                        if (!ret)
+                        {
+                            MessageBoxResult mbresult = MessageBox.Show("Please Input correct format", "Error");
+                        }
+
+                        bool is_ID_True = false;
+                        foreach (var person in mWindow.li_Person)
+                        {
+                            if (person.ID == personID) is_ID_True = true;
+                        }
+
+                        if (!is_ID_True)
+                        {
+                            MessageBox.Show("There is not matched person ID", "Error");
+                        }
+
+                        var ids = from person in mWindow.li_Person
+                                  where person.ID == id
+                                  select person;
+
+                        if (ids.Count() > 0)
+                        {
+                            MessageBox.Show("There is already same ID", "Fail");
+                        }
+
+                        if (ret && is_ID_True && ids.Count() == 0)
+                        {
+                            Personality temp = new Personality(id, personID, ssize, tb[3].Text, tb[4].Text);
+                            mWindow.li_Personalities[this.idx] = temp;
+                            ((Personality_Page)this.pg).Update();
+                            MessageBox.Show("Update success", "Success");
+                            this.Close();
+                        }
                     }
-                    Personality temp = new Personality(id, personID, ssize, tb[3].Text, tb[4].Text);
-                    mWindow.li_Personalities[this.idx] = temp;
-                    ((Personality_Page)this.pg).Update();
                 }
                 else if (this.pg is Education_Page)
                 {
-                    int id, personID;
-                    double grade;
-                    bool ret = int.TryParse(tb[0].Text, out id);
-                    ret &= int.TryParse(tb[1].Text, out personID);
-                    ret &= double.TryParse(tb[3].Text, out grade);
-                    if (!ret)
+                    MessageBoxResult mbResult = MessageBox.Show("Do you want to update?", "Confirm", MessageBoxButton.YesNo);
+                    if (MessageBoxResult.Yes == mbResult)
                     {
-                        MessageBoxResult mbresult = MessageBox.Show("Please Input correct format", "Error");
-                        this.Close();
-                    }
-                    Education temp = new Education(id, personID, tb[2].Text, grade, tb[4].Text);
-                    mWindow.li_Educations[this.idx] = temp;
-                    ((Education_Page)pg).Update();
-                }
+                        int id, personID;
+                        double grade;
+                        bool ret = int.TryParse(tb[0].Text, out id);
+                        ret &= int.TryParse(tb[1].Text, out personID);
+                        ret &= double.TryParse(tb[3].Text, out grade);
+                        if (!ret)
+                        {
+                            MessageBoxResult mbresult = MessageBox.Show("Please Input correct format", "Error");
+                        }
 
+                        bool is_ID_True = false;
+                        foreach (var person in mWindow.li_Person)
+                        {
+                            if (person.ID == personID) is_ID_True = true;
+                        }
+
+                        if (!is_ID_True)
+                        {
+                            MessageBox.Show("There is not matched person ID", "Error");
+                        }
+
+                        var ids = from person in mWindow.li_Person
+                                  where person.ID == id
+                                  select person;
+
+                        if (ids.Count() > 0)
+                        {
+                            MessageBox.Show("There is already same ID", "Fail");
+                        }
+
+                        if (ret && is_ID_True && ids.Count() == 0)
+                        {
+                            Education temp = new Education(id, personID, tb[2].Text, grade, tb[4].Text);
+                            mWindow.li_Educations[this.idx] = temp;
+                            ((Education_Page)pg).Update();
+                            MessageBox.Show("Update success", "Success");
+                            this.Close();
+                        }
+                    }
+                }
             }
         }
     }

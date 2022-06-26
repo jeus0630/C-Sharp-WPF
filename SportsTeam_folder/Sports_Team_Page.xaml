@@ -23,23 +23,18 @@
                 <MenuItem Header="Help" Click="Clk_Help"></MenuItem>
             </Menu>
         </DockPanel>
-        <Grid Margin="0,22,0,0">
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            
-            <Button Grid.Row="0" Grid.Column="0" Click="Clk_Insert" Background="Beige">Insert</Button>
-            <Button Grid.Row="0" Grid.Column="1" Click="Clk_Update" Background="Beige">Update</Button>
-            <Button Grid.Row="1" Grid.Column="0" Click="Clk_Delete" Background="Beige">Delete</Button>
-            <StackPanel Grid.Row="1" Grid.Column="1">
-                <Label Name="lbl_header" Background="LightSlateGray" Foreground="White"></Label>
-                <ListBox Name="lb_sports_team"/>
-            </StackPanel>
-        </Grid>
+        <StackPanel Orientation="Horizontal" Margin="0,22,0,0">
+
+            <Button Width="130" Click="Clk_Insert" Background="Beige">Insert</Button>
+            <Button Width="130" Click="Clk_Update" Background="Beige">Update</Button>
+            <Button Width="130" Click="Clk_Delete" Background="Beige">Delete</Button>
+
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" Width="400">
+                <StackPanel Width="380">
+                    <Label Name="lbl_header" Background="LightSlateGray" Foreground="White"></Label>
+                    <ListBox Name="lb_sports_team"/>
+                </StackPanel>
+            </ScrollViewer>
+        </StackPanel>
     </Grid>
 </Window>

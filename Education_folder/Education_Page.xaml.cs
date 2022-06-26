@@ -14,23 +14,20 @@ using System.Windows.Shapes;
 
 namespace Midterm_Assignment_Jewoo_Ham
 {
-    /// <summary>
-    /// Education_Page.xaml에 대한 상호 작용 논리
-    /// </summary>
     public partial class Education_Page : Window
     {
         MainWindow mWindow = ((MainWindow)System.Windows.Application.Current.MainWindow);
-        const int width_id = 50;
-        const int width_personID = 150;
-        const int width_courseName = 100;
-        const int width_courseGrade = 250;
-        const int width_comments = 40;
+        const int width_id = 85;
+        const int width_personID = 70;
+        const int width_courseName = 250;
+        const int width_courseGrade = 100;
+        const int width_comments = 130;
         public int argc = 5;
 
         public Education_Page(ref List<Person> li_Person, ref List<Education> li_Education)
         {
             InitializeComponent();
-            lbl_header.Content = $"{"ID",width_id} {"Person ID",width_personID} {"Course Name",width_courseName} {"Course Grade",width_courseGrade} {"Comments",width_comments}";
+            lbl_header.Content = $"{"ID"} {"Person ID",20} {"Course Name",20} {"Course Grade",50} {"Comments",20}";
             Update();
         }
 
@@ -86,7 +83,7 @@ namespace Midterm_Assignment_Jewoo_Ham
         {
             if (lb_education.SelectedItem == null)
             {
-                MessageBoxResult mbresult = MessageBox.Show("Please Select ", "Error", MessageBoxButton.OK);
+                MessageBoxResult mbresult = MessageBox.Show("Please Select Item from the list where you want to insert", "Error", MessageBoxButton.OK);
             }
             else
             {
@@ -100,17 +97,13 @@ namespace Midterm_Assignment_Jewoo_Ham
         {
             if (lb_education.SelectedItem == null)
             {
-                MessageBox.Show("Please Select ", "Error", MessageBoxButton.OK);
+                MessageBox.Show("Please Select Item from the list", "Error", MessageBoxButton.OK);
             }
             else
-            {
-                MessageBoxResult mbresult = MessageBox.Show("Do you want to update?", "Confirm", MessageBoxButton.YesNo);
-                if (MessageBoxResult.Yes == mbresult)
-                {
-                    int idx = lb_education.SelectedIndex;
-                    Input_Window input_window = new Input_Window(this, "update", idx);
-                    input_window.Show();
-                }
+            {            
+                int idx = lb_education.SelectedIndex;
+                Input_Window input_window = new Input_Window(this, "update", idx);
+                input_window.Show();   
             }
         }
 
@@ -118,7 +111,7 @@ namespace Midterm_Assignment_Jewoo_Ham
         {
             if (lb_education.SelectedItem == null)
             {
-                MessageBoxResult mbresult = MessageBox.Show("Please Select ", "Error", MessageBoxButton.OK);
+                MessageBoxResult mbresult = MessageBox.Show("Please Select Item from the list", "Error", MessageBoxButton.OK);
             }
             else
             {

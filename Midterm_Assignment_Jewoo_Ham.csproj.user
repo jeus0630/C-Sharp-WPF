@@ -7,7 +7,7 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Education_Page.xaml.cs">
+    <Compile Update="Education_folder\Education_Page.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Help_Page.xaml.cs">
@@ -19,15 +19,12 @@
     <Compile Update="Personality_folder\Personality_Page.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Persons_folder\Persons_Insert_Window.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Sports_Team_Page.xaml.cs">
+    <Compile Update="SportsTeam_folder\Sports_Team_Page.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Education_Page.xaml">
+    <Page Update="Education_folder\Education_Page.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Help_Page.xaml">
@@ -42,10 +39,7 @@
     <Page Update="Personality_folder\Personality_Page.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Persons_folder\Persons_Insert_Window.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Sports_Team_Page.xaml">
+    <Page Update="SportsTeam_folder\Sports_Team_Page.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

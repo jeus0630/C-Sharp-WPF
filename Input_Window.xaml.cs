@@ -50,6 +50,7 @@ namespace Midterm_Assignment_Jewoo_Ham
             btn_Ok.Width = 40;
             btn_Ok.Height = 40;
             btn_Ok.HorizontalAlignment = HorizontalAlignment.Right;
+            btn_Ok.Content = "OK";
             btn_Ok.Click += Clk_Ok;
             
             if (this.pg is Persons_Page)
@@ -109,7 +110,6 @@ namespace Midterm_Assignment_Jewoo_Ham
                     if (!ret)
                     {
                         MessageBox.Show("Please Input correct format", "Error");
-                        this.Close();
                     }
                     Person temp = new Person(id, tb[1].Text, tb[2].Text, tb[3].Text, age, tb[5].Text);
                     mWindow.li_Person.Insert(this.idx, temp);
@@ -127,7 +127,7 @@ namespace Midterm_Assignment_Jewoo_Ham
                     }
                     SportsTeam temp = new SportsTeam(id, personID, tb[2].Text, tb[3].Text);
                     mWindow.li_SportsTeams.Insert(this.idx, temp);
-                    //((Sports_Team_Page)this.pg).Update();
+                    ((Sports_Team_Page)this.pg).Update();
                 }
                 else if (this.pg is Personality_Page)
                 {

@@ -71,22 +71,21 @@ namespace Midterm_Assignment_Jewoo_Ham
 
         private void Clk_Quit(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            MessageBoxResult mbresult = MessageBox.Show("Do you want to quit the Personality Window?", "Confirm", MessageBoxButton.YesNo);
+            if (MessageBoxResult.Yes == mbresult) this.Close();
         }
 
-        private void Clk_help(object sender, RoutedEventArgs e)
+        private void Clk_Help(object sender, RoutedEventArgs e)
         {
             Help_Page pg_help = new();
             pg_help.Show();
         }
 
-        private void Clk_insert(object sender, RoutedEventArgs e)
+        private void Clk_Insert(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine(lb_personality.SelectedItem.ToString());
             if (lb_personality.SelectedItem == null)
             {
                 MessageBoxResult mbresult = MessageBox.Show("Please Select ", "Error", MessageBoxButton.OK);
-                if (MessageBoxResult.OK == mbresult) this.Close();
             }
             else
             {
@@ -96,21 +95,41 @@ namespace Midterm_Assignment_Jewoo_Ham
             }
         }
 
-        private void Clk_update(object sender, RoutedEventArgs e)
+        private void Clk_Update(object sender, RoutedEventArgs e)
         {
             if (lb_personality.SelectedItem == null)
             {
                 MessageBoxResult mbresult = MessageBox.Show("Please Select ", "Error", MessageBoxButton.OK);
-                if (MessageBoxResult.OK == mbresult) this.Close();
             }
             else
             {
-                int idx = lb_personality.SelectedIndex;
-                Input_Window input_window = new Input_Window(this, "update", idx);
-                input_window.Show();
+                MessageBoxResult mbresult = MessageBox.Show("Do you want to update?", "Confirm", MessageBoxButton.YesNo);
+                if (MessageBoxResult.Yes == mbresult)
+                {
+                    int idx = lb_personality.SelectedIndex;
+                    Input_Window input_window = new Input_Window(this, "update", idx);
+                    input_window.Show();
+                }
             }
         }
 
+        private void Clk_Delete(object sender, RoutedEventArgs e)
+        {
+            if (lb_personality.SelectedItem == null)
+            {
+                MessageBoxResult mbresult = MessageBox.Show("Please Select ", "Error", MessageBoxButton.OK);
+            }
+            else
+            {
+                MessageBoxResult mbresult = MessageBox.Show("Do you want to delete?", "Confirm", MessageBoxButton.YesNo);
+                if (MessageBoxResult.Yes == mbresult)
+                {
+                    int idx = lb_personality.SelectedIndex;
+                    mWindow.li_Personalities.Remove(mWindow.li_Personalities[idx]);
+                    Update();
+                }
+            }
+        }
     }
 
 }

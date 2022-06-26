@@ -69,7 +69,7 @@ namespace Midterm_Assignment_Jewoo_Ham {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Midterm_Assignment_Jewoo_Ham;component/education_page.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/Midterm_Assignment_Jewoo_Ham;V1.0.0.0;component/education_page.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\Education_Page.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

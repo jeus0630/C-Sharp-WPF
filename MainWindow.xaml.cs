@@ -64,7 +64,7 @@ namespace Midterm_Assignment_Jewoo_Ham
 
         private void Clk_Quit(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult mbresult = MessageBox.Show("Do you wnat to quit the application?", "Confirm", MessageBoxButton.YesNoCancel);
+            MessageBoxResult mbresult = MessageBox.Show("Do you want to quit the application?", "Confirm", MessageBoxButton.YesNo);
             if(MessageBoxResult.Yes == mbresult) this.Close();
         }
 
@@ -97,6 +97,21 @@ namespace Midterm_Assignment_Jewoo_Ham
         {
             Help_Page pg_help = new();
             pg_help.Show();
+        }
+
+        private void Clk_Menu_Insert(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult mbresult = MessageBox.Show("You can edit inside each page", "Confirm", MessageBoxButton.YesNo);
+        }
+
+        private void Clk_Menu_Update(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult mbresult = MessageBox.Show("You can edit inside each page", "Confirm", MessageBoxButton.YesNo);
+        }
+
+        private void Clk_Menu_Delete(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult mbresult = MessageBox.Show("You can edit inside each page", "Confirm", MessageBoxButton.YesNo);
         }
     }
 }

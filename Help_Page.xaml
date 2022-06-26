@@ -1,0 +1,20 @@
+﻿<Window x:Class="Midterm_Assignment_Jewoo_Ham.Help_Page"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Midterm_Assignment_Jewoo_Ham"
+        mc:Ignorable="d"
+        Title="Help_Page" Height="450" Width="800" Background="Gray">
+    <Grid>
+        <Label Content="
+            This application allows you to input person's information(Basic Info, SportsTeam, Personality, Education). &#x0a;
+            By Clicking each button, you can do &#x0a;
+               • Persons page: you can insert, update, delete and view each person's information. &#x0a;
+               • Sports Team Page: You can insert, update, delete and view sports team's information based on specific person you put. &#x0a;
+               • Personality Page: You can insert, update, delete and view Personality information based on specific person you put. &#x0a;             
+               • Education Page: You can insert, update, delete and view Education information based on specific person you put.                    
+        "/>
+
+    </Grid>
+</Window>
